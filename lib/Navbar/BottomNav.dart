@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geekhaven/Pages/home.dart';
 import 'package:geekhaven/Pages/profile.dart';
 import 'package:geekhaven/Pages/setting.dart';
+import 'package:geekhaven/Pages/suggestion_page.dart';
 
 
 class BottomNav extends StatefulWidget {
@@ -19,6 +20,7 @@ class _BottomNavState extends State<BottomNav> {
   late Home home;
   late Setting setting;
   late Profile profile;
+  late SuggestionPage suggestion_page;
   int currentTabIndex=0;
 
   @override
@@ -26,7 +28,9 @@ class _BottomNavState extends State<BottomNav> {
     setting = Setting();
     home = Home();
     profile = Profile();
-    Pages = [home, setting,  profile];
+    suggestion_page = SuggestionPage();
+
+    Pages = [home, suggestion_page, setting,  profile];
     super.initState();
   }
 
@@ -38,18 +42,20 @@ class _BottomNavState extends State<BottomNav> {
       bottomNavigationBar: DotCurvedBottomNav(
         height: 70,
         backgroundColor: Colors.black,
-        animationDuration: const Duration(milliseconds: 300),
+        //animationDuration: const Duration(milliseconds: 300),
         animationCurve: Curves.ease,
-        //animationDuration: const Duration(milliseconds: 500),
+        animationDuration: const Duration(milliseconds: 500),
         onTap: (int index){
           setState(() {
             currentTabIndex = index;
           });
         },
-        items: [
+        items: const [
           Icon(Icons.home_outlined, color: Colors.white,),
+          Icon(Icons.mode_of_travel_rounded, color: Colors.white,),
           Icon(Icons.settings,color: Colors.white,),
           Icon(Icons.person_outlined,color: Colors.white,),
+
         ],),
       body: Pages[currentTabIndex],
     );

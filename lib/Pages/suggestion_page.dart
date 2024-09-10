@@ -106,7 +106,8 @@ class _SuggestionPageState extends State<SuggestionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(backgroundColor: Theme.of(context).colorScheme.background,),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Stack(
         children: [
             FlutterMap(

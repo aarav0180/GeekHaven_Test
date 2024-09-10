@@ -39,6 +39,7 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       bottomNavigationBar: DotCurvedBottomNav(
         height: 70,
         backgroundColor: Colors.black,

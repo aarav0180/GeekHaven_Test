@@ -46,6 +46,8 @@ dependencies:
 
   dot_curved_bottom_nav: ^0.0.1
 
+  provider:
+
 
 dev_dependencies:
   flutter_test:

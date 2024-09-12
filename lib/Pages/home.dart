@@ -84,91 +84,11 @@ class _HomeState extends State<Home> {
                       }),
                 ),
                 SizedBox(height: 30.0,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Products",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 22.0
-                        )),
-                    Text("See all",
-                        style: TextStyle(color: Colors.orange, fontSize: 16, fontWeight: FontWeight.w500))
-                  ],
-                ),
-                SizedBox(height: 30.0,),
-                Container(
-                  height: 240,
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        margin: EdgeInsets.only(right: 20),
-                        child:
-                        Column(children: [
-                          Image.asset("images/headphone2.png", height: 120.0, width: 120.0, fit: BoxFit.cover,),
-                          Text("Headphones", style: AppWidget.semiBoldTextStyle(),),
-                          Row(
-                            children: [
-                              Text("\$150", style: TextStyle(color: Colors.orange, fontSize: 20, fontWeight: FontWeight.bold),),
-                              SizedBox(width: 40.0,),
-                              Container(
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(color: Colors.orange),
-                                  child: Icon(Icons.add, color: Colors.white))
-                            ],
-                          )
-                        ],),),
 
-                      Container(
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        margin: EdgeInsets.only(right: 20),
-                        child:
-                        Column(children: [
-                          Image.asset("images/watch2.png", height: 120.0, width: 120.0, fit: BoxFit.cover,),
-                          Text("Watch", style: AppWidget.semiBoldTextStyle(),),
-                          Row(
-                            children: [
-                              Text("\$50", style: TextStyle(color: Colors.orange, fontSize: 20, fontWeight: FontWeight.bold),),
-                              SizedBox(width: 40.0,),
-                              Container(
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(color: Colors.orange),
-                                  child: Icon(Icons.add, color: Colors.white))
-                            ],
-                          )
-                        ],),),
-
-
-                      Container(
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        margin: EdgeInsets.only(right: 20),
-                        child:
-                        Column(children: [
-                          Image.asset("images/headphone2.png", height: 120.0, width: 120.0, fit: BoxFit.cover,),
-                          Text("Headphones", style: AppWidget.semiBoldTextStyle(),),
-                          Row(
-                            children: [
-                              Text("\$150", style: TextStyle(color: Colors.orange, fontSize: 20, fontWeight: FontWeight.bold),),
-                              SizedBox(width: 40.0,),
-                              Container(
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(color: Colors.orange),
-                                  child: Icon(Icons.add, color: Colors.white))
-                            ],
-                          )
-                        ],),),
-
-
-
-
-                    ],),
-                )
               ],
+
+
+
             )
         ),
     );

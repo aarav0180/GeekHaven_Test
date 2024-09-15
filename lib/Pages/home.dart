@@ -14,13 +14,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  List category = [
-    "Headphones",
-    "laptop",
-    "watch",
-    "TV",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,11 +153,7 @@ class _HomeState extends State<Home> {
                 
                 SizedBox(height: 30,),
                 
-                Stack(
-                  alignment: Alignment.bottomRight,
-                  children: [
-                    Text("Planning a future trip", style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 21),),],
-                )
+
 
               ],
 
@@ -178,33 +167,3 @@ class _HomeState extends State<Home> {
 }
 
 
-class CategoryTile extends StatelessWidget {
-  String image, name;
-  CategoryTile({required this.image, required this.name});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        Navigator.push(context,MaterialPageRoute(builder: (context) => Home()));
-      },
-      child: Container(
-        padding: EdgeInsets.all(20.0),
-        margin: EdgeInsets.only(right: 20.0),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20)
-        ),
-        height: 110.0,
-        width: 110.0,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.asset(image , height: 70.0, width: 70.0, fit: BoxFit.cover,),
-            SizedBox(height: 20.0,),
-            Icon(Icons.arrow_forward)
-          ],),
-      ),
-    );
-  }
-}

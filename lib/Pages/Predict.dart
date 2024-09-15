@@ -151,7 +151,7 @@ class _PredictState extends State<Predict> {
 }
 
 class WeatherCard extends StatefulWidget {
-  final String place;  // Accept place from the parent widget
+  final String place;
 
   const WeatherCard({required this.place, Key? key}) : super(key: key);
 
@@ -161,7 +161,7 @@ class WeatherCard extends StatefulWidget {
 
 class _WeatherCardState extends State<WeatherCard> {
   final WeatherFactory _wf = WeatherFactory(API_KEY);
-  Weather? _weather;
+  List<Weather> _forecast = [];
   bool _isLoading = true;
 
   @override
@@ -170,12 +170,33 @@ class _WeatherCardState extends State<WeatherCard> {
     _fetchWeather();
   }
 
-  // Fetch the weather based on the passed place
+  // Fetch weather and filter for unique days
   void _fetchWeather() async {
     try {
-      var weatherData = await _wf.fiveDayForecastByCityName(widget.place);
+      List<Weather> weatherData = await _wf.fiveDayForecastByCityName(widget.place);
+
+      final filteredData = <Weather>[];
+      final Set<String> addedDates = {};
+
+      for (var weather in weatherData) {
+        final date = weather.date!;
+        final formattedDate = DateFormat('yyyy-MM-dd').format(date); // Extract just the date (no time)
+
+        // Only add one entry per day at midday or first occurrence
+        if (!addedDates.contains(formattedDate) && date.hour == 12) {
+          addedDates.add(formattedDate);
+          filteredData.add(weather);
+        }
+
+        // Add first occurrence of the day if no midday entry found
+        if (!addedDates.contains(formattedDate) && filteredData.length < 5) {
+          addedDates.add(formattedDate);
+          filteredData.add(weather);
+        }
+      }
+
       setState(() {
-        _weather = weatherData.isNotEmpty ? weatherData.first : null;
+        _forecast = filteredData.take(5).toList(); // Limit to 5 days of forecast
         _isLoading = false;
       });
     } catch (e) {
@@ -186,20 +207,12 @@ class _WeatherCardState extends State<WeatherCard> {
     }
   }
 
-  // Mock data for current weather and 4-day forecast
-  final List<Map<String, String>> _forecast = [
-    {"day": "Monday", "weather": "29°C, Sunny"},
-    {"day": "Tuesday", "weather": "26°C, Cloudy"},
-    {"day": "Wednesday", "weather": "24°C, Rainy"},
-    {"day": "Thursday", "weather": "27°C, Partly Cloudy"},
-  ];
-
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
       return Center(child: CircularProgressIndicator());
     }
-    DateTime now = _weather!.date!;
+
     return Card(
       color: Theme.of(context).colorScheme.secondary,
       elevation: 4,
@@ -210,60 +223,48 @@ class _WeatherCardState extends State<WeatherCard> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      _weather?.areaName ?? "Weather Info",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    SizedBox(height: 16),
-
-                    Text(DateFormat("EEEE").format(now)),
-                  ],
-                ),
-                SizedBox(width: 30,),
-                
-                Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Column(
-                          children: [
-                            Text("${_weather?.temperature?.celsius?.toStringAsFixed(2)} °C"),
-                            SizedBox(height: 4,),
-                            Text(_weather?.weatherDescription??""),
-                          ],
-
-                        )
-                      ),
-                      SizedBox(width: 5,),
-                      Container(
-                        height: MediaQuery.sizeOf(context).height * 0.1,
-                        decoration: BoxDecoration(image: DecorationImage(image: NetworkImage("http://openweathermap.org/img/wn/${_weather?.weatherIcon}@2x.png"))),
-                      )
-                    ],
-                  )
-                )
-
-
-              ],
+            Text(
+              widget.place,
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
-            Column(
-              children: [
-                ListView.builder(
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: _forecast.length,
+              itemBuilder: (context, index) {
+                final weather = _forecast[index];
+                DateTime date = weather.date!;
+                String day = DateFormat('EEEE').format(date); // Get the day of the week
+                String temperature = weather.temperature?.celsius?.toStringAsFixed(1) ?? 'N/A';
+                String description = weather.weatherDescription ?? '';
+                String formattedDate = DateFormat('d.M.y').format(date); // Format the date
 
-
-                )
+                return ListTile(
+                  title: Text(
+                    '$day , $formattedDate',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  subtitle: Text(
+                    '$temperature °C, $description',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  leading: Image.network(
+                    'http://openweathermap.org/img/wn/${weather.weatherIcon}@2x.png',
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
     );
   }
 }
+
 
 
 

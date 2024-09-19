@@ -66,6 +66,8 @@ dependencies:
 
   firebase_messaging: ^15.1.1
 
+  shared_preferences:
+
 
 dev_dependencies:
   flutter_test:

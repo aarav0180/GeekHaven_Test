@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geekhaven/Pages/Predict.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:geekhaven/Widgets/date_util.dart' as date_util;
@@ -401,6 +402,75 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
+
+              SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      padding: EdgeInsets.symmetric(vertical: 12.0),
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: Colors.white,
+                            width: 1.5
+                        ),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => Predict()) );
+                        },
+                        child: Center(
+                          child: Text(
+                            "Forecast",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      padding: EdgeInsets.symmetric(vertical: 12.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1.5,
+                        ),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+
+                        },
+                        child: Center(
+                          child: Text(
+                            "Reminder",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
               SizedBox(height: 30),
               const Text(
                 "Planning Something?",
@@ -417,6 +487,7 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+
   }
 
   Widget buildCard(String title, String imagePath) {

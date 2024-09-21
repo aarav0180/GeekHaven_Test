@@ -60,13 +60,19 @@ dependencies:
 
   get:
 
-  modal_bottom_sheet: ^3.0.0
+  modal_bottom_sheet:
 
   weather: ^3.1.1
 
-  firebase_messaging: ^15.1.1
+  firebase_messaging:
 
   shared_preferences:
+
+  google_sign_in:
+
+  cloud_firestore:
+
+  fluttertoast:
 
 
 dev_dependencies:

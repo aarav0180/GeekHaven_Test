@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:geekhaven/Navbar/BottomNav.dart';
+import 'package:geekhaven/Pages/Login.dart';
 import 'package:geekhaven/Pages/suggestion_page.dart';
 import 'package:geekhaven/Theme/theme_provider.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNav(),
+      home: LogIn(),
       theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }

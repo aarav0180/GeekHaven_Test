@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geekhaven/Pages/Predict.dart';
+import 'package:geekhaven/Pages/trip_form.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:geekhaven/Widgets/date_util.dart' as date_util;
@@ -452,7 +453,7 @@ class _HomeState extends State<Home> {
                       ),
                       child: InkWell(
                         onTap: () {
-
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => TripForm()));
                         },
                         child: Center(
                           child: Text(

@@ -76,6 +76,16 @@ dependencies:
 
   font_awesome_flutter:
 
+  flutter_rating_bar:
+
+  syncfusion_flutter_pdf:
+
+  pdf:
+
+  path_provider:
+
+  open_file:
+
 
 dev_dependencies:
   flutter_test:

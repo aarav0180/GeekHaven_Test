@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:geekhaven/Models/pdf_model.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
@@ -102,15 +103,5 @@ class PdfTravellerApi {
 class Utils {
   static String formatDate(DateTime date) {
     return '${date.day}/${date.month}/${date.year}';
-  }
-}
-
-class PdfApi {
-  static Future<File> saveDocument({
-    required String name,
-    required Document pdf,
-  }) async {
-    final output = File('/path/to/save/$name'); // Adjust your file save location
-    return output.writeAsBytes(await pdf.save());
   }
 }

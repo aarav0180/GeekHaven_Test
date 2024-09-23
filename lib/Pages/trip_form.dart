@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:geekhaven/Models/pdf_trip.dart';
+
+import '../Models/pdf_model.dart';
 
 class TripForm extends StatefulWidget {
   @override
@@ -254,16 +257,24 @@ class _TripFormState extends State<TripForm> {
     );
   }
 
-  void _submitForm() {
-    // Handle form submission logic here
-    print("User Name: ${nameController.text}");
-    print("User Email: ${emailController.text}");
-    print("Trip Details: ${tripDetailsController.text}");
-    print("Trip Date: $selectedDate");
-    print("Trip Experience: ${experienceController.text}");
-    print("Trip Rating: $rating");
+  void _submitForm() async {
+
+    final traveller = Traveller(
+          name: nameController.text,
+          email: emailController.text,
+          tripExperience: experienceController.text,
+          rating: rating
+        );
+
+    final travellers = [traveller];
+
+    final pdfFile = await PdfTravellerApi.generate(travellers);
+
+    PdfApi.openFile(pdfFile);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text("Form Submitted Successfully!"),
     ));
+
+    Navigator.pop(context);
   }
 }

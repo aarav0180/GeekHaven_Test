@@ -4,13 +4,15 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is my app for geekhaven tasks .
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tasks Done 
+1. Maps added with search location, marker and self location function.
+2. added loading bar
+3. added profile page
+4. settings page
+5. UI toggle switch
+6. Weather forecast added which forecasts upto 5 days
+7. calender days
+8. to do list added with day wise segragation
+9. 

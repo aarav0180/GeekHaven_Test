@@ -30,7 +30,6 @@ class _HomeState extends State<Home> {
     currentMonthList = currentMonthList.toSet().toList();
     scrollController = ScrollController(initialScrollOffset: 70.0 * currentDateTime.day);
 
-    // Load tasks when the app starts
     _loadTasks();
   }
 
@@ -43,7 +42,7 @@ class _HomeState extends State<Home> {
     setState(() {
       tasksByDate[dateKey] = tasksByDate[dateKey] ?? [];
       tasksByDate[dateKey]!.add(task);
-      _saveTasks(); // Save tasks after adding
+      _saveTasks();
     });
   }
 
@@ -51,18 +50,18 @@ class _HomeState extends State<Home> {
     String dateKey = _getFormattedDate(currentDateTime);
     setState(() {
       tasksByDate[dateKey]?.removeAt(index);
-      _saveTasks(); // Save tasks after deleting
+      _saveTasks();
     });
   }
 
-  // Save tasks to SharedPreferences
+
   void _saveTasks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, String> tasksJson = tasksByDate.map((key, value) => MapEntry(key, jsonEncode(value)));
     await prefs.setString('tasks', jsonEncode(tasksJson));
   }
 
-  // Load tasks from SharedPreferences
+
   void _loadTasks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? tasksString = prefs.getString('tasks');
@@ -457,7 +456,7 @@ class _HomeState extends State<Home> {
                         },
                         child: Center(
                           child: Text(
-                            "Reminder",
+                            "Share Thoughts",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,

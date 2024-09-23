@@ -13,7 +13,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  String? email, password, name;
+  String? email, password, name, image;
   TextEditingController namecontroller = new TextEditingController();
   TextEditingController passwordcontroller = new TextEditingController();
   TextEditingController mailcontroller = new TextEditingController();
@@ -26,6 +26,7 @@ class _SignUpState extends State<SignUp> {
       email = mailcontroller.text;
       name = namecontroller.text;
       password = passwordcontroller.text;
+      image = "https://firebasestorage.googleapis.com/v0/b/perfectnew-cc234.appspot.com/o/androgynous-avatar-non-binary-queer-person.jpg?alt=media&token=7a864647-6db0-4544-8753-7dcc00f56feb";
     });
 
     if (password != null&& namecontroller.text!=""&& mailcontroller.text!="") {

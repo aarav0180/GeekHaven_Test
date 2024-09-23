@@ -5,3 +5,7 @@ class DatabaseMethods{
     return FirebaseFirestore.instance.collection("User").doc(userId).set(userInfoMap);
   }
 }
+
+Future<Stream<QuerySnapshot>> getProfile () async {
+  return await FirebaseFirestore.instance.collection("User").snapshots();
+}

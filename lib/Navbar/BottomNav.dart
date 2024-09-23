@@ -19,7 +19,7 @@ class _BottomNavState extends State<BottomNav> {
 
   late Home home;
   late Setting setting;
-  late Profile profile;
+  late ProfilePage profile;
   late SuggestionPage suggestion_page;
   int currentTabIndex=0;
 
@@ -27,7 +27,7 @@ class _BottomNavState extends State<BottomNav> {
   void initState() {
     setting = Setting();
     home = Home();
-    profile = Profile();
+    profile = ProfilePage();
     suggestion_page = SuggestionPage();
 
     Pages = [home, suggestion_page, setting,  profile];

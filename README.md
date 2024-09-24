@@ -16,4 +16,6 @@ This is my app for geekhaven tasks .
 7. calender days
 8. to do list added with day wise segragation
 9. multi-step form added
-10. pdf exporting and sharing added 
+10. pdf exporting and sharing added
+
+## Login and Signup also working just it isn't showing in the main app because the starting screen is home screen.
